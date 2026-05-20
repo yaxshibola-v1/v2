@@ -1,0 +1,2313 @@
+<!DOCTYPE html>
+<html lang="uz" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zamonaviy Dasturlash Tillari — DAK Test</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        /* Discrete repeating diagonal watermark */
+        .watermark-bg {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 250 250'><text fill='rgba(139, 92, 246, 0.03)' font-size='13' font-family='sans-serif' x='20' y='120' transform='rotate(-30 20 120)'>@yomonboIa | @yovvoyiroq</text></svg>");
+        }
+        .dark .watermark-bg {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 250 250'><text fill='rgba(255, 255, 255, 0.02)' font-size='13' font-family='sans-serif' x='20' y='120' transform='rotate(-30 20 120)'>@yomonboIa | @yovvoyiroq</text></svg>");
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col watermark-bg transition-colors duration-300">
+
+    <!-- TOP HEADER BAR -->
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            
+            <!-- Logo & Brand -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-brand-600 rounded-xl flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+                    <i class="fa-solid fa-code text-lg animate-pulse"></i>
+                </div>
+                <div>
+                    <h1 class="text-base sm:text-lg font-bold tracking-tight text-slate-900 dark:text-white leading-tight">Dasturlash Tillari</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">DAK Yakuniy Test • To'liq Savollar Banki</p>
+                </div>
+            </div>
+
+            <!-- Promotion buttons requested by user -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Clickable Admin Watermark Badge -->
+                <a href="https://t.me/yomonboIa" target="_blank" class="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-slate-700/50 rounded-lg text-xs font-semibold text-slate-500 dark:text-slate-400 transition-all cursor-pointer">
+                    <i class="fa-solid fa-user-shield text-brand-500"></i>
+                    <span>Admin: <span class="font-bold">@yomonboIa</span></span>
+                </a>
+
+                <!-- Telegram Channel Link button -->
+                <a href="https://t.me/yovvoyiroq" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-2 bg-purple-600 hover:bg-purple-700 active:scale-95 text-white rounded-xl text-xs sm:text-sm font-bold shadow-sm transition-all">
+                    <i class="fa-brands fa-telegram text-base"></i>
+                    <span>Kanalimiz <span class="hidden sm:inline">@yovvoyiroq</span></span>
+                </a>
+
+                <!-- Theme Toggle -->
+                <button id="themeToggleBtn" onclick="toggleTheme()" class="w-9 h-9 flex items-center justify-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-slate-600 dark:text-slate-300 transition-all">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- FLOATING CORNER ADMIN BADGE (CLICKABLE) -->
+    <div class="fixed bottom-4 right-4 z-50 opacity-50 hover:opacity-100 transition-all">
+        <a href="https://t.me/yomonboIa" target="_blank" class="bg-white/90 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-full text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-2 shadow-lg hover:border-brand-500 hover:text-brand-500 transition-all">
+            <span class="w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
+            <span>Aloqa: @yomonboIa</span>
+        </a>
+    </div>
+
+    <!-- MAIN APP WRAPPER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row gap-6 relative">
+
+        <!-- LEFT BAR: DASHBOARD & NAVIGATION -->
+        <section class="w-full lg:w-80 flex flex-col gap-5 shrink-0">
+            
+            <!-- STATS CARD -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm transition-all">
+                <h2 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-3 flex items-center justify-between">
+                    <span>O'zlashtirish</span>
+                    <i class="fa-solid fa-chart-line text-brand-500"></i>
+                </h2>
+                
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-xl border border-slate-100 dark:border-slate-800/50 text-center">
+                        <p class="text-xs text-slate-400 dark:text-slate-500 font-medium">To'g'ri</p>
+                        <p id="correctCountText" class="text-xl font-bold text-emerald-500">0</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-xl border border-slate-100 dark:border-slate-800/50 text-center">
+                        <p class="text-xs text-slate-400 dark:text-slate-500 font-medium">Noto'g'ri</p>
+                        <p id="wrongCountText" class="text-xl font-bold text-rose-500">0</p>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div>
+                    <div class="flex justify-between text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5">
+                        <span>Javoblar foizi:</span>
+                        <span id="progressBarPercentage">0%</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div id="progressBarFill" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <div class="flex justify-between text-[11px] text-slate-400 dark:text-slate-500 mt-2">
+                        <span id="answeredRatioText">Yechildi: 0 / 250</span>
+                        <span id="bookmarkCountText">Yodda: 0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTROLS & SETTINGS -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm transition-all flex flex-col gap-4">
+                <h2 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 flex items-center justify-between">
+                    <span>Sozlamalar</span>
+                    <i class="fa-solid fa-sliders text-brand-500"></i>
+                </h2>
+
+                <!-- Mode Switcher -->
+                <div class="flex bg-slate-100 dark:bg-slate-900 p-1 rounded-xl">
+                    <button id="modeStudyBtn" onclick="changeQuizMode('study')" class="flex-1 py-2 text-xs font-bold rounded-lg transition-all bg-white dark:bg-slate-800 text-brand-600 shadow-sm">
+                        O'rganish
+                    </button>
+                    <button id="modeExamBtn" onclick="changeQuizMode('exam')" class="flex-1 py-2 text-xs font-bold rounded-lg transition-all text-slate-500 dark:text-slate-400">
+                        Imtihon
+                    </button>
+                </div>
+
+                <!-- Timer (Exam Only) -->
+                <div id="examTimerContainer" class="hidden animate-fade-in">
+                    <div class="bg-rose-50 dark:bg-rose-950/30 border border-rose-100 dark:border-rose-900/50 rounded-xl p-3 flex items-center justify-between text-rose-700 dark:text-rose-400">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-hourglass-half animate-spin text-sm"></i>
+                            <span class="text-xs font-semibold">Qolgan vaqt:</span>
+                        </div>
+                        <span id="examTimerText" class="font-mono text-sm font-bold">60:00</span>
+                    </div>
+                </div>
+
+                <!-- Filter Panel -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">Mavzu filteri:</label>
+                    <select id="categoryFilter" onchange="filterQuestions()" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-2.5 text-xs font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none text-slate-700 dark:text-slate-300">
+                        <option value="all">Barcha mavzular (To'liq bank)</option>
+                        <option value="cpp">C++ Dasturlash tili asoslari</option>
+                        <option value="stl">STL (Standard Template Library)</option>
+                        <option value="oop">Struktura va Klasslar (OOP)</option>
+                        <option value="pascal">Pascal Dasturlash tili va Algoritmlar</option>
+                        <option value="bookmarked">Yodda saqlanganlar (★)</option>
+                    </select>
+                </div>
+
+                <!-- Search Input -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">Savollardan qidirish:</label>
+                    <div class="relative">
+                        <input id="searchInput" oninput="filterQuestions()" type="text" placeholder="Kalit so'z yoki kod yozing..." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl pl-9 pr-4 py-2 text-xs font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none text-slate-700 dark:text-slate-300">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-[11px] text-slate-400"></i>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="shuffleCurrentQuestions()" class="p-2.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-shuffle text-[10px]"></i>
+                        Aralashtirish
+                    </button>
+                    <button onclick="resetQuizState()" class="p-2.5 bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/20 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-semibold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-arrow-rotate-left text-[10px]"></i>
+                        Tozalash
+                    </button>
+                </div>
+            </div>
+
+            <!-- INDEX GRID MAP CARD -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm transition-all flex flex-col flex-1 min-h-[250px] lg:max-h-[420px]">
+                <h2 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-3 flex items-center justify-between">
+                    <span>Savollar xaritasi</span>
+                    <span id="filteredCountBadge" class="text-xs bg-slate-100 dark:bg-slate-900 px-2 py-0.5 rounded-full font-bold text-slate-500 dark:text-slate-400">0/0</span>
+                </h2>
+                
+                <div class="flex flex-wrap gap-2 text-[10px] text-slate-400 dark:text-slate-500 font-semibold mb-3">
+                    <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 bg-slate-200 dark:bg-slate-700 rounded"></span> Ochiq</span>
+                    <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 bg-emerald-500 rounded"></span> To'g'ri</span>
+                    <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 bg-rose-500 rounded"></span> Noto'g'ri</span>
+                    <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 bg-yellow-500 rounded"></span> Imtihonda</span>
+                </div>
+
+                <div id="questionsMapContainer" class="grid grid-cols-5 sm:grid-cols-10 lg:grid-cols-5 gap-1.5 overflow-y-auto flex-1 pr-1 custom-scrollbar">
+                    <!-- Dynamic buttons -->
+                </div>
+            </div>
+
+        </section>
+
+        <!-- RIGHT BAR: ACTIVE QUESTION & EXPLANATION -->
+        <section class="flex-1 flex flex-col gap-5">
+            
+            <!-- CURRENT QUESTION CARD -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm transition-all flex flex-col gap-6 relative overflow-hidden">
+                
+                <!-- Card Background Watermark -->
+                <div class="absolute inset-0 watermark-bg opacity-10 pointer-events-none"></div>
+
+                <!-- Upper info row -->
+                <div class="flex items-center justify-between gap-3 z-10">
+                    <div class="flex items-center gap-2">
+                        <span id="questionIndexBadge" class="px-3 py-1 bg-brand-600 text-white text-xs font-bold rounded-full">SAVOL 1</span>
+                        <span id="questionSourceBadge" class="px-3 py-1 bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 text-xs font-bold rounded-full max-w-[150px] sm:max-w-[300px] truncate">C++ Asoslari</span>
+                    </div>
+                    <button id="bookmarkBtn" onclick="toggleBookmarkActiveQuestion()" class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-300 dark:text-slate-600 transition-all">
+                        <i class="fa-solid fa-star text-lg"></i>
+                    </button>
+                </div>
+
+                <!-- Actual Question Text & Optional Code display -->
+                <div class="z-10">
+                    <h3 id="questionTextDisplay" class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-relaxed whitespace-pre-line font-mono bg-slate-50/50 dark:bg-slate-900/30 p-4 rounded-2xl border border-slate-100 dark:border-slate-800/80">
+                        Yuklanmoqda...
+                    </h3>
+                </div>
+
+                <!-- Options List (Will be shuffled dynamically) -->
+                <div id="optionsListContainer" class="flex flex-col gap-3 z-10">
+                    <!-- Option cards dynamically generated -->
+                </div>
+
+                <!-- Bottom Row navigation controls inside Question Card -->
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100 dark:border-slate-700/50 pt-5 mt-4 z-10">
+                    <div class="flex gap-2 w-full sm:w-auto">
+                        <button id="prevBtn" onclick="navigateToQuestion(-1)" class="flex-1 sm:flex-initial px-4 py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700/50 font-bold text-xs flex items-center justify-center gap-1.5 transition-all">
+                            <i class="fa-solid fa-arrow-left"></i> Oldingisi
+                        </button>
+                        <button id="nextBtn" onclick="navigateToQuestion(1)" class="flex-1 sm:flex-initial px-4 py-2.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-800 dark:text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all">
+                            Keyingisi <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Actions like finish exam or show answer -->
+                    <div class="w-full sm:w-auto flex gap-2 justify-end">
+                        <button id="examSubmitBtn" onclick="finishExamPrompt()" class="hidden w-full sm:w-auto px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition-all animate-pulse">
+                            <i class="fa-solid fa-square-check"></i> Imtihonni yakunlash
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- EXPLANATION CARD (STUDY MODE ONLY) -->
+            <div id="explanationCard" class="bg-violet-50/50 dark:bg-violet-950/20 border border-violet-100/50 dark:border-violet-900/30 rounded-3xl p-6 sm:p-8 shadow-sm transition-all flex flex-col gap-3 animate-fade-in">
+                <div class="flex items-center gap-2 text-violet-600 dark:text-violet-400">
+                    <i class="fa-solid fa-circle-check text-base animate-bounce"></i>
+                    <h4 class="text-xs sm:text-sm font-bold uppercase tracking-wider">To'g'ri javob tasdig'i</h4>
+                </div>
+                <div class="bg-white dark:bg-slate-900/50 rounded-2xl p-4 border border-violet-100 dark:border-violet-950/50">
+                    <p id="explanationTextDisplay" class="text-xs sm:text-sm font-semibold italic text-slate-600 dark:text-slate-300 leading-relaxed font-mono">
+                        ...
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- EXAM FINISH REPORT MODAL -->
+    <div id="examResultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl animate-scale-up">
+            
+            <div class="p-6 sm:p-8 flex flex-col items-center text-center border-b border-slate-100 dark:border-slate-800">
+                <div class="w-16 h-16 bg-brand-100 dark:bg-brand-950/50 text-brand-500 dark:text-brand-400 rounded-full flex items-center justify-center text-2xl mb-4">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Imtihon Yakunlandi!</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Sizning yakuniy attestatsiya natijangiz tayyor bo'ldi.</p>
+
+                <!-- Detailed Circular Stats -->
+                <div class="my-6 grid grid-cols-3 gap-4 w-full">
+                    <div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-2xl text-center">
+                        <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase">Jami Savollar</p>
+                        <p id="modalTotalAnswered" class="text-lg font-extrabold text-slate-700 dark:text-slate-300">0</p>
+                    </div>
+                    <div class="bg-emerald-50 dark:bg-emerald-950/20 p-3 rounded-2xl text-center">
+                        <p class="text-[10px] font-bold text-emerald-400 dark:text-emerald-500 uppercase">To'g'ri</p>
+                        <p id="modalCorrect" class="text-lg font-extrabold text-emerald-600 dark:text-emerald-400">0</p>
+                    </div>
+                    <div class="bg-rose-50 dark:bg-rose-950/20 p-3 rounded-2xl text-center">
+                        <p class="text-[10px] font-bold text-rose-400 dark:text-rose-500 uppercase">Noto'g'ri</p>
+                        <p id="modalIncorrect" class="text-lg font-extrabold text-rose-600 dark:text-rose-400">0</p>
+                    </div>
+                </div>
+
+                <!-- Percent Display -->
+                <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-4 mb-2 overflow-hidden">
+                    <div id="modalPercentBar" class="h-full bg-brand-500 rounded-full" style="width: 0%"></div>
+                </div>
+                <p id="modalPercentText" class="text-sm font-bold text-slate-700 dark:text-slate-300">Ko'rsatkich: 0%</p>
+                <p id="modalGradeText" class="text-xs font-semibold text-brand-600 dark:text-brand-400 mt-2 px-4"></p>
+            </div>
+
+            <div class="p-4 bg-slate-50 dark:bg-slate-850 flex flex-col gap-2">
+                <button onclick="reviewExamAnswers()" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm rounded-xl transition-all shadow-sm">
+                    Xatolarni ko'rib chiqish (O'rganish rejimida)
+                </button>
+                <button onclick="closeModalAndReset()" class="w-full py-3 bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs rounded-xl transition-all">
+                    Testni boshidan qayta boshlash
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- PRELOAD WEB AUDIO SYNTHESIZER -->
+    <script>
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playQuizSound(type) {
+            try {
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'correct') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+                    osc.frequency.setValueAtTime(880.00, audioCtx.currentTime + 0.08); // A5
+                    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.005, audioCtx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.3);
+                } else if (type === 'wrong') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(220.00, audioCtx.currentTime); // A3
+                    osc.frequency.setValueAtTime(146.83, audioCtx.currentTime + 0.1); // D3
+                    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.005, audioCtx.currentTime + 0.4);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.4);
+                }
+            } catch (err) {
+                // Ignore silent audio blockages
+            }
+        }
+    </script>
+
+    <!-- CORE ATTESATION DATABASE -->
+    <script>
+        const rawQuestionsData = [
+            {
+                id: 1,
+                q: "C++ dasturlash tilida belgili o'zgaruvchilar ... tipi orqali e'lon qilinadi.",
+                answer: "Char",
+                options: ["Char", "String", "Char va string", "Strlen"],
+                cat: "cpp"
+            },
+            {
+                id: 2,
+                q: "getch( ) funksiyasi qaysi sarlavha fayliga tegishli?",
+                answer: "<conio.h>",
+                options: ["<conio.h>", "<stdlib.h>", "<math.h>", "<iostream.h>"],
+                cat: "cpp"
+            },
+            {
+                id: 3,
+                q: "cout.precision (4) funksiyasi qanday vazifani bajaradi?",
+                answer: "Ifodani kasr qismini 4 xona birlikgacha yahlitlash",
+                options: ["Ifodani kasr qismini 4 xona birlikgacha yahlitlash", "Dasturning 4-satriga otish", "Dasturdagi 4-satrni hisoblash va natijasini chiqarish", "Dasturdagi 4-satrni hisoblamaslik uchun"],
+                cat: "cpp"
+            },
+            {
+                id: 4,
+                q: "Quyidagi dasturda nechta xato bor ?\n\n#include<iostream.h>\n#include<math.h>\nvoid main();\n{float P,k;\ncout<<\"k=\"; cin>>k;\nP=0;\nfor(int n=1;n<=k;n++)\n{ P=P+1/pow(n.3); }\ncout<<\"P=\"<<P<<endl; }",
+                answer: "3 ta",
+                options: ["3 ta", "4 ta", "2 ta", "Xato yoq"],
+                cat: "cpp"
+            },
+            {
+                id: 5,
+                q: "C/C++ tilida barcha funksiyalardan tashqarida elon qilingan ozgaruvchilar qanday ozgaruvchilar deyiladi?",
+                answer: "global ozgaruvchilar",
+                options: ["global ozgaruvchilar", "lokal ozgaruvchilar", "butun ozgaruvchilar", "xaqiqiy ozgaruvchilar"],
+                cat: "cpp"
+            },
+            {
+                id: 6,
+                q: "Qaysi malumotlar tipi qozgoluvchan nuqtali sonlar tipiga kiradi?",
+                answer: "Float",
+                options: ["Float", "Char", "Int", "Void"],
+                cat: "cpp"
+            },
+            {
+                id: 7,
+                q: "Quyidagi tiplardan qaysi biri uchun kompyuter xotirasidan eng kam joy ajratiladi?",
+                answer: "char",
+                options: ["char", "float", "int", "short"],
+                cat: "cpp"
+            },
+            {
+                id: 8,
+                q: "Mantiqiy tipni korsating.",
+                answer: "bool",
+                options: ["bool", "int", "char", "double"],
+                cat: "cpp"
+            },
+            {
+                id: 9,
+                q: "Quyidagilardan qaysi tip butun sonlar tipiga kiradi?",
+                answer: "int",
+                options: ["int", "char", "double", "float"],
+                cat: "cpp"
+            },
+            {
+                id: 10,
+                q: "Uzunligi 32 bitdan kam bolmagan malumotni haqiqiy tipi qaysi soz orqali ifodalanadi?",
+                answer: "double",
+                options: ["double", "float", "long", "short"],
+                cat: "cpp"
+            },
+            {
+                id: 11,
+                q: "Uzunligi 64 bitdan kichik bolmagan malumotning xaqiqiy tipi qaysi soz orqali ifodalanadi?",
+                answer: "long double",
+                options: ["long double", "float", "double", "short"],
+                cat: "cpp"
+            },
+            {
+                id: 12,
+                q: "C++ dasturlash tilida satrli o'zgaruvchilar ... tipi orqali e'lon qilinadi.",
+                answer: "String",
+                options: ["String", "Char", "Char va string", "Strlen"],
+                cat: "cpp"
+            },
+            {
+                id: 13,
+                q: "Yangi tip kiritish amalini korsating",
+                answer: "Typedef",
+                options: ["Typedef", "Define", "Sizeof", "Struct"],
+                cat: "cpp"
+            },
+            {
+                id: 14,
+                q: "Xotira xajmini hisoblash amalini korsating",
+                answer: "sizeof",
+                options: ["sizeof", "typedef", "define", "Struct"],
+                cat: "cpp"
+            },
+            {
+                id: 15,
+                q: "Qaysi belgi yordamida korsatkich aniqlaydigan manzil qiymatini olish mumkin?",
+                answer: "*",
+                options: ["*", "$", "&", "^"],
+                cat: "cpp"
+            },
+            {
+                id: 16,
+                q: "C++ da izoh togri ifodalangan qatorni toping",
+                answer: "/* izoh */",
+                options: ["/* izoh */", "**izoh**", "*/ izoh */", "{ izoh }"],
+                cat: "cpp"
+            },
+            {
+                id: 17,
+                q: "case operatoridan keyin qaysi belgi qoyiladi?",
+                answer: ":",
+                options: [":", ";", ".", "-"],
+                cat: "cpp"
+            },
+            {
+                id: 18,
+                q: "C++ da Post-increment amalini aniqlang",
+                answer: "X++",
+                options: ["X++", "++X", "X--", "--X"],
+                cat: "cpp"
+            },
+            {
+                id: 19,
+                q: "Massiv elementlaridan foydalanish nima orqali bajariladi?",
+                answer: "Element nomi va indeksi boyicha",
+                options: ["Element nomi va indeksi boyicha", "FIFO yonalish", "LIFO yonalish", "Faqat element nomi bilan"],
+                cat: "cpp"
+            },
+            {
+                id: 20,
+                q: "C++ dasturlash tilida malumotlarni kiritish operatorini aniqlang",
+                answer: ">>",
+                options: [">>", "->", "<<", "=>"],
+                cat: "cpp"
+            },
+            {
+                id: 21,
+                q: "C++ dasturlash tilida malumotlarni chiqarish operatorini aniqlang",
+                answer: "<<",
+                options: ["<<", ">>", "<=", "<-"],
+                cat: "cpp"
+            },
+            {
+                id: 22,
+                q: "Qaysi operator yordamida kop alternativli tanlash bajariladi?",
+                answer: "switch",
+                options: ["switch", "throw", "public", "struct"],
+                cat: "cpp"
+            },
+            {
+                id: 23,
+                q: "Qaysi soz yordamida shartli operator kiritiladi?",
+                answer: "if",
+                options: ["if", "throw", "public", "for"],
+                cat: "cpp"
+            },
+            {
+                id: 24,
+                q: "goto operatori boshqaruvni nimaga beradi?",
+                answer: "nishonga (metka)",
+                options: ["nishonga (metka)", "ozgaruvchiga", "funksiyaga", "satrga"],
+                cat: "cpp"
+            },
+            {
+                id: 25,
+                q: "Siklni keyingi bosh iteratsiyasiga boshqaruvni qaysi operator yuboradi?",
+                answer: "continue",
+                options: ["continue", "switch", "break", "goto"],
+                cat: "cpp"
+            },
+            {
+                id: 26,
+                q: "Qaysi operator yordamida sikldan va shartdan chiqish bajariladi?",
+                answer: "break",
+                options: ["break", "new", "delete", "void"],
+                cat: "cpp"
+            },
+            {
+                id: 27,
+                q: "Qaysi soz yordamida dinamik xotira ajratiladi?",
+                answer: "new",
+                options: ["new", "continue", "void", "break"],
+                cat: "cpp"
+            },
+            {
+                id: 28,
+                q: "Qaysi operator yordamida dinamik xotira ochiriladi?",
+                answer: "delete",
+                options: ["delete", "new", "continue", "break"],
+                cat: "cpp"
+            },
+            {
+                id: 29,
+                q: "Shart operatori qaysi konstruksiya yordamida ifodalanadi?",
+                answer: "if (ifoda_shart) {} else {}",
+                options: ["if (ifoda_shart) {} else {}", "while (ifoda_shart) {}", "else (ifoda_shart) else {}", "if (ifoda_shart) else {}"],
+                cat: "cpp"
+            },
+            {
+                id: 30,
+                q: "C++ da yozilgan quyidagi kod ekranga nima chiqaradi?\n\nint a = 4; int b = 2;\ncout << b / a;",
+                answer: "0",
+                options: ["0", "0,5", "2", "1"],
+                cat: "cpp"
+            },
+            {
+                id: 31,
+                q: "\"while (ifoda_shart) {}\" konstruksiyadan foydalanish nimani bildiradi?",
+                answer: "Avval shartga tekshiriluvchi sikl",
+                options: ["Avval shartga tekshiriluvchi sikl", "Amal bajarilgandan song shartga tekshiriluvchi sikl", "Kop alternativali tuplam", "parametrik sikl"],
+                cat: "cpp"
+            },
+            {
+                id: 32,
+                q: "Operatorlar bloki qaysi qavslar orqali belgilanadi?",
+                answer: "{ }",
+                options: ["{ }", "( )", "[ ]", "[ }"],
+                cat: "cpp"
+            },
+            {
+                id: 33,
+                q: "Agar continue operatori sikl operatori ichida kelsa, u xolda:",
+                answer: "u boshqaruvni siklning kelasi iterasiyasining boshlanishiga uzatadi",
+                options: ["u boshqaruvni siklning kelasi iterasiyasining boshlanishiga uzatadi", "u boshqaruvni siklning oldingi iterasiyasining oxiriga uzatadi", "u boshqaruvni belgidan keyin kelgan sikl iterasiyasiga uzatadi", "u boshqaruvni sikldan keyingi operatorga uzatadi"],
+                cat: "cpp"
+            },
+            {
+                id: 34,
+                q: "C++ dasturlash tilida yozilgan dasturda qaysi funksiya bolishi shart?",
+                answer: "main()",
+                options: ["main()", "global()", "inline()", "local()"],
+                cat: "cpp"
+            },
+            {
+                id: 35,
+                q: "C++ dasturlash tilida qiymat qaytarmaydigan funksiya tipi qanday nomlanadi?",
+                answer: "void",
+                options: ["void", "int", "bool", "float"],
+                cat: "cpp"
+            },
+            {
+                id: 36,
+                q: "iostream preprosessor sarlavha fayli nimani bildiradi?",
+                answer: "Kiritish/chiqarish oqimlari bilan ishlash imkonini yaratish",
+                options: ["Kiritish/chiqarish oqimlari bilan ishlash imkonini yaratish", "Malumot fayllari bilan ishlash imkoni", "Obyektni joylashtirish uchun xotirani dinamik ajratish", "Satrlar bilan ishlash imkonini yaratish"],
+                cat: "cpp"
+            },
+            {
+                id: 37,
+                q: "Qaysi soz yordamida struktura tariflanadi?",
+                answer: "struct",
+                options: ["struct", "switch", "public", "for"],
+                cat: "oop"
+            },
+            {
+                id: 38,
+                q: "Vorislik bu — ...",
+                answer: "bir sinfga boshqa sinf funksionalligini qoshish",
+                options: ["bir sinfga boshqa sinf funksionalligini qoshish", "bir obyektga boshqa obyekt nusxasini qoshish", "bir obyektga boshqa obyekt ilovasini qoshish", "sinf usullarini qayta tariflash"],
+                cat: "oop"
+            },
+            {
+                id: 39,
+                q: "Inkapsulyasiya bu — ...",
+                answer: "yagona obyektda malumotlar va funksiyalarni jamlash",
+                options: ["yagona obyektda malumotlar va funksiyalarni jamlash", "bir obyektga boshqa obyekt nusxasini qoshish", "yagona obyektda malumotlar va shu malumotlarga korsatkichlarni jamlash", "yagona obyektda malumotlar va shu malumotlarga ilovalarni jamlash"],
+                cat: "oop"
+            },
+            {
+                id: 40,
+                q: "Hamma obyektlar uchun umumiy bolgan sinf azolari qaysi soz yordamida tariflanadi?",
+                answer: "static",
+                options: ["static", "protected", "private", "friend"],
+                cat: "oop"
+            },
+            {
+                id: 41,
+                q: "Qaysi soz yordamida faqat sinf ichida sinfning azolaridan erkin foydalanish xuquqini berish mumkin?",
+                answer: "private",
+                options: ["private", "static", "friend", "protected"],
+                cat: "oop"
+            },
+            {
+                id: 42,
+                q: "Sinf azosiga sinf ichida va tashqarisida murojaat xuquqini berish qaysi soz yordamida amalga oshiriladi?",
+                answer: "public",
+                options: ["public", "switch", "throw", "protected"],
+                cat: "oop"
+            },
+            {
+                id: 43,
+                q: "Fayllar bilan ishlash uchun dasturga qaysi sarlavxali faylni qoshish lozim?",
+                answer: "fstream",
+                options: ["fstream", "string", "iostream", "conio"],
+                cat: "cpp"
+            },
+            {
+                id: 44,
+                q: "Fayl oxirini aniqlash uchun qanday funksiya ishlatiladi?",
+                answer: "eof()",
+                options: ["eof()", "bad()", "fail()", "flush()"],
+                cat: "cpp"
+            },
+            {
+                id: 45,
+                q: "Fayl bilan ishlashda xatoni aniqlash uchun qanday funksiya ishlatiladi?",
+                answer: "fail()",
+                options: ["fail()", "eof()", "bad()", "flush()"],
+                cat: "cpp"
+            },
+            {
+                id: 46,
+                q: "Qaysi manipulyator sakkizlik tizimda chiqarishga imkon beradi?",
+                answer: "oct",
+                options: ["oct", "dec", "hex", "setfill"],
+                cat: "cpp"
+            },
+            {
+                id: 47,
+                q: "Qaysi manipulyator on oltilik tizimda chiqarishga imkon beradi?",
+                answer: "hex",
+                options: ["hex", "oct", "dec", "ws"],
+                cat: "cpp"
+            },
+            {
+                id: 48,
+                q: "Qaysi manipulyator yangi simvol belgisini qo’yib ostream buferini tozalaydi?",
+                answer: "endl",
+                options: ["endl", "dec", "hex", "oct"],
+                cat: "cpp"
+            },
+            {
+                id: 49,
+                q: "Qaysi manipulyator kiritish chiqarish maydoni kengligini o’rnatadi?",
+                answer: "setw",
+                options: ["setw", "setprecision", "setbase", "setfill"],
+                cat: "cpp"
+            },
+            {
+                id: 50,
+                q: "Istisnolarni (исключительные ситуации) generasiya qilish qaysi so’z yordamida amalga oshiriladi?",
+                answer: "throw",
+                options: ["throw", "switch", "public", "struct"],
+                cat: "cpp"
+            },
+            {
+                id: 51,
+                q: "Istisnolarni (исключительные ситуации) qayta ishlash blogini e’lon qilish qaysi so’z yordamida amalga oshiriladi?",
+                answer: "catch",
+                options: ["catch", "friend", "try", "operator"],
+                cat: "cpp"
+            },
+            {
+                id: 52,
+                q: "Istisnolar (исключительные ситуации) hosil qilishi mumkin bo’lgan blokni e’lon qilish qaysi soz yordamida amalga oshiriladi?",
+                answer: "try",
+                options: ["try", "catch", "operator", "friend"],
+                cat: "cpp"
+            },
+            {
+                id: 53,
+                q: "Konteyner chiziqli royxat qaysi?",
+                answer: "list",
+                options: ["list", "vector", "stack", "queue"],
+                cat: "stl"
+            },
+            {
+                id: 54,
+                q: "Konteyner ikki tomonli navbat qaysi?",
+                answer: "deque",
+                options: ["deque", "vector", "stack", "list"],
+                cat: "stl"
+            },
+            {
+                id: 55,
+                q: "Konteyner toplam hamma elementlari unikal bo'lgan tur qaysi?",
+                answer: "set",
+                options: ["set", "multimap", "multiset", "queue"],
+                cat: "stl"
+            },
+            {
+                id: 56,
+                q: "Konteyner toplam hamma elementlari unikal bolishi shart bo'lmagan tur qaysi?",
+                answer: "multiset",
+                options: ["multiset", "set", "queue", "multimap"],
+                cat: "stl"
+            },
+            {
+                id: 57,
+                q: "Konteyner karta xar bir kalit bilan bitta qiymat boglangan tur qaysi?",
+                answer: "map",
+                options: ["map", "multimap", "set", "multiset"],
+                cat: "stl"
+            },
+            {
+                id: 58,
+                q: "Konteyner karta xar bir kalit bilan bir yoki bir nechta qiymat boglangan tur qaysi?",
+                answer: "multimap",
+                options: ["multimap", "set", "map", "queue"],
+                cat: "stl"
+            },
+            {
+                id: 59,
+                q: "Ekranga nima chiqadi?\n\n#include <string.h>\n#include <iostream>\nvoid main() {\n  char a[] = \"123\";\n  std::cout << strlen(a);\n}",
+                answer: "3",
+                options: ["3", "6", "4", "8"],
+                cat: "cpp"
+            },
+            {
+                id: 60,
+                q: "Birinchi element ochirish usulini (STL list) korsating",
+                answer: "pop_front",
+                options: ["pop_front", "pop_back", "push_front", "push_back"],
+                cat: "stl"
+            },
+            {
+                id: 61,
+                q: "Konteyner oxiriga element qoshish usulini korsating",
+                answer: "push_back",
+                options: ["push_back", "push_front", "pop_back", "front"],
+                cat: "stl"
+            },
+            {
+                id: 62,
+                q: "Elementni o'chirish usulini korsating",
+                answer: "erase",
+                options: ["erase", "back", "assign", "front"],
+                cat: "stl"
+            },
+            {
+                id: 63,
+                q: "freopen(\"kfayl.txt\",\"r\",_______); bo'sh joyni to'ldiring.",
+                answer: "stdin",
+                options: ["stdin", "stdout", "std", "hech nima qoyilmaydi"],
+                cat: "cpp"
+            },
+            {
+                id: 64,
+                q: "STL ning to'liq yozilishini aniqlang.",
+                answer: "Standard Template Library",
+                options: ["Standard Template Library", "Standard Temp Late", "Standard Temp Library", "Standard Template Library pro"],
+                cat: "stl"
+            },
+            {
+                id: 65,
+                q: "STL konteyner tarkibi qaysi qatorda to'g'ri ko'rsatilgan?",
+                answer: "Containers; iterators; algorithms; adaptors; functors.",
+                options: ["Containers; iterators; algorithms; adaptors; functors.", "Containers; algorithms; adaptors; functors.", "Containers; iterators; adaptors; functors.", "Containers; iterators; algorithms; functors."],
+                cat: "stl"
+            },
+            {
+                id: 66,
+                q: "Chiziqli konteyner vector va massivning vazifasida farqi bormi?",
+                answer: "Vazifasida farqi yoq",
+                options: ["Vazifasida farqi yoq", "Farqi bor, qaytaradigan tipida", "Farqi bor, malumotlarni saqlanishida", "Ikkalasi bir biriga zid"],
+                cat: "stl"
+            },
+            {
+                id: 67,
+                q: "Vektor konteynerni tozalash metodini aniqlang.",
+                answer: "clear()",
+                options: ["clear()", "clr()", "clearFull()", "clearAll()"],
+                cat: "stl"
+            },
+            {
+                id: 68,
+                q: "insert() metodi orqali nima ishni amalga oshiriladi?",
+                answer: "Malumot qoshiladi",
+                options: ["Malumot qoshiladi", "Malumot yaratiladi", "Malumot ustiga qoshiladi", "Malumot ustiga yaratiladi"],
+                cat: "stl"
+            },
+            {
+                id: 69,
+                q: "push_back va pop_back metodlari nima vazifani amalga oshiradi?",
+                answer: "push_back oxiriga malumot qoshadi, pop_back oxiridagi malumotni ochiradi",
+                options: ["push_back oxiriga malumot qoshadi, pop_back oxiridagi malumotni ochiradi", "push_back oxiridagi malumotni ochiradi, pop_back oxiriga malumot qoshadi", "push_back oxiridagi yozuvga malumot qoshadi, pop_back oxiridagi yozuv malumotni ochiradi", "push_back oxiridagi yozuv malumotni ochiradi, pop_back oxiridagi yozuvga malumot qoshadi"],
+                cat: "stl"
+            },
+            {
+                id: 70,
+                q: "Chiziqli tartiblangan konteynerlar keltirilgan qatorni aniqlang.",
+                answer: "vector, list, string",
+                options: ["vector, list, string", "list, vector, map", "set, map, vector", "string, set, map"],
+                cat: "stl"
+            },
+            {
+                id: 71,
+                q: "Assosiativ konteyner map ning metodlari togri keltirilgan qatorni aniqlang.",
+                answer: "lower_bound(), upper_bound()",
+                options: ["lower_bound(), upper_bound()", "lower_case(), upper_case()", "lowerbound(), upperbound()", "lowerCase(), upperCase()"],
+                cat: "stl"
+            },
+            {
+                id: 72,
+                q: "C++ dasturlash tilida ishlatiladigan operatorlar togri korsatilgan javobni tanlang.",
+                answer: "cout, getch, return",
+                options: ["cout, getch, return", "begin, include, clrscr", "while, NULL, type", "cin, gets, char"],
+                cat: "cpp"
+            },
+            {
+                id: 73,
+                q: "C++ dasturlash tilida funksiyaga qiymat qaytarish kalit sozi togri korsatilgan javobni belgilang.",
+                answer: "return",
+                options: ["return", "exit_success", "getline", "clear"],
+                cat: "cpp"
+            },
+            {
+                id: 74,
+                q: "C++ dasturlash tilida mantiqiy qiymatni togridan-togri qaysi tipga ozlashtirib bolmaydi?",
+                answer: "string",
+                options: ["string", "__int64", "char", "int"],
+                cat: "cpp"
+            },
+            {
+                id: 75,
+                q: "C++ dasturlash tilida cout<<&b; qatorining vazifasi nima?",
+                answer: "b ning hotira adresini qaytaradi",
+                options: ["b ning hotira adresini qaytaradi", "b ning qiymatini qaytaradi", "b ni 8 lik sanoq sistemasiga otkazadi", "b ning tarkibida kelgan & belgisini ochiradi"],
+                cat: "cpp"
+            },
+            {
+                id: 76,
+                q: "C++da scanf operatorining kutubxonasi qaysi?",
+                answer: "stdio.h",
+                options: ["stdio.h", "conio.h", "stdlib.h", "printf"],
+                cat: "cpp"
+            },
+            {
+                id: 77,
+                q: "Strukturalardan ham sinf (class) sifatida foydalanish mumkin. Quyida keltirilgan strukturaga ekvivalent sinfni aniqlang: \n\nStruktura struct B: A {};",
+                answer: "class B: public A{};",
+                options: ["class B: public A{};", "class A: public B{};", "class B: A{};", "class B: private A{};"],
+                cat: "oop"
+            },
+            {
+                id: 78,
+                q: "Sinf (class)ning barcha elementlariga murojaatni ornatish mumkinmi?",
+                answer: "Ha",
+                options: ["Ha", "Yoq", "Ha, sinfdagi elementlarning 50% ga", "Ha, sinfdagi elementlarning 33% ga"],
+                cat: "oop"
+            },
+            {
+                id: 79,
+                q: "Sinfning barcha elementlariga murojaatni cheklab qoyish mumkinmi?",
+                answer: "Ha",
+                options: ["Ha", "Yoq", "Ha, sinfdagi elementlarning 50% ga", "Ha, sinfdagi elementlarning 33% ga"],
+                cat: "oop"
+            },
+            {
+                id: 80,
+                q: "C++ da Post-decrement amalini aniqlang",
+                answer: "X--",
+                options: ["X--", "++X", "X++", "--X"],
+                cat: "cpp"
+            },
+            {
+                id: 81,
+                q: "Quyidagi dastur bajarilgandan song k ning qiymatini aniqlang: \n\n#include <stdio.h>\nint main(){\n int k = +5*-9;\n printf(\"%d\", k);\n return 0;\n}",
+                answer: "-45",
+                options: ["-45", "-4", "4", "Dastur xato"],
+                cat: "cpp"
+            },
+            {
+                id: 82,
+                q: "Quyidagi dastur bajarilgandan song k ning qiymatini aniqlang: \n\n#include <stdio.h>\nint k;\nint main(){\n k = 123;\n printf(\"%d\", k ++);\n return 0;\n}",
+                answer: "123",
+                options: ["123", "124", "122", "121"],
+                cat: "cpp"
+            },
+            {
+                id: 83,
+                q: "Quyidagi dastur natijasini aniqlang: \n\n#include <stdio.h>\nint main(){\n int a = 45, b = a / 10 + 3;\n puts(a > b ? \"YES\" : a < b ? \"NO\" : \"ERROR\");\n return 0;\n}",
+                answer: "YES",
+                options: ["YES", "NO", "ERROR", "Dastur xato"],
+                cat: "cpp"
+            },
+            {
+                id: 84,
+                q: "C++ dasturlash tilida ozgaruvchi qayerda elon qilinadi?",
+                answer: "Ixtiyoriy joyda",
+                options: ["Ixtiyoriy joyda", "Faqat funksiyalar ichida", "Faqat asosiy(main) fuksiyasida", "Funksiya oxirida"],
+                cat: "cpp"
+            },
+            {
+                id: 85,
+                q: "Quyidagi dasturda ekranga nechta \"Salom\" so'zi chiqadi? \n\n#include <stdio.h>\nint main(){\n int a = 45, b = a / 10 + 3;\n for (int i = 0; i < 2; i ++)\n   for(int j = 0; j < -2; j ++)\n     puts(\"Salom\");\n return 0;\n}",
+                answer: "0",
+                options: ["0", "9", "12", "10"],
+                cat: "cpp"
+            },
+            {
+                id: 86,
+                q: "Quyidagi dastur natijasida a nechaga teng boladi?\n\nint a = 10, n = 6;\nfor(int i = 0; i < n; i ++) a += i;",
+                answer: "25",
+                options: ["25", "30", "35", "40"],
+                cat: "cpp"
+            },
+            {
+                id: 87,
+                q: "Sinf elementlariga murojaat kim tomonidan nazorat qilinadi yoki boshqariladi?",
+                answer: "Sinf yaratuvchisi tomonidan",
+                options: ["Sinf yaratuvchisi tomonidan", "Programist tomonidan", "Foydalanuvchi tomonidan", "Murojaatlarni boshqarish shartmas"],
+                cat: "oop"
+            },
+            {
+                id: 88,
+                q: "Sinfning konstruktor va destruktorlari odatda qaysi bo'limida e'lon qilinadi?",
+                answer: "Public",
+                options: ["Public", "Private", "Protected", "Ixtiyoriy bo'limda"],
+                cat: "oop"
+            },
+            {
+                id: 89,
+                q: "Konstruktorlarni e'lon qilishda natijaviy qaytarish tipi belgilanadimi?",
+                answer: "Yoq",
+                options: ["Yoq", "Ha", "Faqat void", "Faqat int"],
+                cat: "oop"
+            },
+            {
+                id: 90,
+                q: "Destruktorlarni elon qilishda natijaviy qaytuvchi tip belgilanadimi?",
+                answer: "Yoq",
+                options: ["Yoq", "Ha", "Faqat void", "Faqat int"],
+                cat: "oop"
+            },
+            {
+                id: 91,
+                q: "Konstruktorlarni elon qilishda ularning nomlari qaysi nom bilan bir xil bo'lishi lozim?",
+                answer: "Sinf nomi bilan",
+                options: ["Sinf nomi bilan", "Birinchi public metod bilan", "Birinchi private metod bilan", "Destruktor nomi bilan"],
+                cat: "oop"
+            },
+            {
+                id: 92,
+                q: "Destruktorlarni e'lon qilishda ularning nomlari qaysi nom bilan bir xil bo'lishi lozim?",
+                answer: "Sinf nomi bilan",
+                options: ["Sinf nomi bilan", "Konstruktor", "Birinchi public metod", "Birinchi private metod"],
+                cat: "oop"
+            },
+            {
+                id: 93,
+                q: "Konstruktorlar va destruktorlar nomlanishi qaysi belgi bilan farqlanadi?",
+                answer: "~",
+                options: ["~", "::", "()", "Ular farqlanmaydi"],
+                cat: "oop"
+            },
+            {
+                id: 94,
+                q: "Bir sinfda ko'p yuklash yordamida nechtagacha konstruktor elon qilish mumkin?",
+                answer: "Ixtiyoriy",
+                options: ["Ixtiyoriy", "Bitta", "Ikkita", "Uchta"],
+                cat: "oop"
+            },
+            {
+                id: 95,
+                q: "Bir sinfda nechtagacha destruktor elon qilish mumkin?",
+                answer: "Bitta",
+                options: ["Bitta", "Ixtiyoriy", "Ikkita", "Uchta"],
+                cat: "oop"
+            },
+            {
+                id: 96,
+                q: "Sinfda yaratilgan destruktorlarni kompilyator qanday farqlaydi?",
+                answer: "Ularni farqlash kerakmas, chunki u bitta",
+                options: ["Ularni farqlash kerakmas, chunki u bitta", "Parametrlari orqali", "Nomlari orqali", "Parametrlari va nomlari orqali"],
+                cat: "oop"
+            },
+            {
+                id: 97,
+                q: "Sinfda bir nechta yaratilgan konstruktorlarni kompilyator qanday farqlaydi?",
+                answer: "Parametrlari orqali",
+                options: ["Parametrlari orqali", "Nomlari orqali", "Parametrlari va nomlari orqali", "Ularni farqlash kerakmas, chunki u bitta"],
+                cat: "oop"
+            },
+            {
+                id: 98,
+                q: "Quyidagi dastur natijasida a nechaga teng boladi?\n\nint a = 10, n = 6;\nfor(int i = 0; i <= n; i ++) a += i;",
+                answer: "31",
+                options: ["31", "25", "35", "40"],
+                cat: "cpp"
+            },
+            {
+                id: 99,
+                q: "C++ da yangi satrga otish buyrugi (escape sequence) qaysi javobda to'g'ri ko'rsatilgan?",
+                answer: "\\n",
+                options: ["\\n", "\\t", "\\b", "\\?"],
+                cat: "cpp"
+            },
+            {
+                id: 100,
+                q: "C++ da bitta pozitsiya orqaga qaytish (backspace) qaysi buyruq bilan amalga oshiriladi?",
+                answer: "\\b",
+                options: ["\\b", "\\n", "\\t", "\\?"],
+                cat: "cpp"
+            },
+            {
+                id: 101,
+                q: "Ushbu dasturda qaysi ozgaruvshilar global ozgaruvchilar hisoblanadi?\n\n#include <stdio.h>\nint a, n;\ndouble s;\nint main(){\n int i, j, k;\n char c; \n return 0;\n}",
+                answer: "a, n, s",
+                options: ["a, n, s", "a, n, c", "i, j, k", "i, j, k, c"],
+                cat: "cpp"
+            },
+            {
+                id: 102,
+                q: "Quyidagilardan qaysi biri sodda dinamik ma'lumotlar strukturasi hisoblanadi?",
+                answer: "stek",
+                options: ["stek", "navbat", "binar daraxt", "class"],
+                cat: "pascal"
+            },
+            {
+                id: 103,
+                q: "Pascal tilida a ga b ning qiymati taminlangan (o'zlashtirilgan) degan yozuv qanday tavsiflanadi?",
+                answer: "a:=b;",
+                options: ["a:=b;", "a==b;", "b:=a;", "a <> b;"],
+                cat: "pascal"
+            },
+            {
+                id: 104,
+                q: "a=2.0; b=2.0f; c=2.0l bo'lsa, a, b, c o'zgaruvchilarning mos tiplarini aniqlang.",
+                answer: "double a; float b; long double c;",
+                options: ["double a; float b; long double c;", "float a; double b; long c;", "double a; float b; long c;", "double a,b,c;"],
+                cat: "cpp"
+            },
+            {
+                id: 105,
+                q: "a[19] massivning oxirgi elementi indeksini aniqlang (C++ massiv deklaratsiyasi bo'yicha).",
+                answer: "18",
+                options: ["18", "17", "19", "Dasturchi tomonidan belgilanadi"],
+                cat: "cpp"
+            },
+            {
+                id: 106,
+                q: "boolean (bool) tipi xotiradan qancha joy ajratadi?",
+                answer: "1 bayt",
+                options: ["1 bayt", "2 bayt", "4 bayt", "8 bayt"],
+                cat: "cpp"
+            },
+            {
+                id: 107,
+                q: "C++ da shartli operator togri berilgan strukturani korsating.",
+                answer: "if (shart) <operator1> ; else <operator2>;",
+                options: ["if (shart) <operator1> ; else <operator2>;", "if (<shart>) then <operator1> ; else <operator2>;", "<operator1> if <shart> else <operator2>;", "<operator> if <shart>;"],
+                cat: "cpp"
+            },
+            {
+                id: 108,
+                q: "Quyidagi tiplardan qaysi biri uchun xotiradan eng katta hajm ajratiladi?",
+                answer: "long double",
+                options: ["long double", "long long", "float", "double"],
+                cat: "cpp"
+            },
+            {
+                id: 109,
+                q: "Butun natija qaytarib, haqiqiy argument qabul qiluvchi funksiya sarlavhasini aniqlang.",
+                answer: "int func1 (float a);",
+                options: ["int func1 (float a);", "int func1 (int a);", "float (float a);", "float func1 (float a);"],
+                cat: "cpp"
+            },
+            {
+                id: 110,
+                q: "OOP tushunchasi bo'yicha Vorislik (Inheritance) bu — ...",
+                answer: "yangi sinfni avvaldan malum bolgan sinflar xususiyatlaridan foydalangan holda hosil qilish imkonini beruchi obektga yonaltirilgan dasturlash mexanizimidir",
+                options: ["yangi sinfni avvaldan malum bolgan sinflar xususiyatlaridan foydalangan holda hosil qilish imkonini beruchi obektga yonaltirilgan dasturlash mexanizimidir", "dasturchiga ishlatilayotgan komponentaning murakkabligini etiborga olmagan holda muamoni hal etishga imkon beruvchi dasturlash tili xususiyatidir", "obektni boshqa obektlardan farqlaydigan, hamda konseptual chegaralarini aniq korsatadigan obekt xarakteristikasidir", "Bir xil spetsifikatsiyaga ega obektlarning turli talqin qilish imkoniyati"],
+                cat: "oop"
+            },
+            {
+                id: 111,
+                q: "0.5 * (sinx + cosx) ifodaning Pascal dastrulash tilida yozilganini toping.",
+                answer: "0.5*(sin(x)+cos(x))",
+                options: ["0.5*(sin(x)+cos(x))", "0.5*(sinx+cosx)", "0,5*(sin(x)-cos(x))", "Togri javob yoq"],
+                cat: "pascal"
+            },
+            {
+                id: 112,
+                q: "(x-y)/(x^5 - y^3) ifodasining Paskalda to'g'ri yozilganini toping.",
+                answer: "(x-y)/(exp(5*ln(x))-sqr(y)*y)",
+                options: ["(x-y)/(exp(5*ln(x))-sqr(y)*y)", "(x-y)/(exp(5*x)-y*3)", "(x-y)/exp(5*ln(x))-sqr(y)*y", "(x-y)/(ln(5*x)-sqr(y)*y)"],
+                cat: "pascal"
+            },
+            {
+                id: 113,
+                q: "Pascal tilida qiymatlarning nechta standart toifasi (tipi) mavjud?",
+                answer: "4",
+                options: ["4", "5", "7", "8"],
+                cat: "pascal"
+            },
+            {
+                id: 114,
+                q: "3 mod 5 ifodasi nimaga teng?",
+                answer: "3",
+                options: ["3", "1", "4", "-1"],
+                cat: "pascal"
+            },
+            {
+                id: 115,
+                q: "7 div 2 ifodasi nimaga teng?",
+                answer: "3",
+                options: ["3", "-3", "0", "1"],
+                cat: "pascal"
+            },
+            {
+                id: 116,
+                q: "7 mod 4 ifodasi nimaga teng?",
+                answer: "3",
+                options: ["3", "1", "0", "2"],
+                cat: "pascal"
+            },
+            {
+                id: 117,
+                q: "9 div 2 ifodasi nimaga teng?",
+                answer: "4",
+                options: ["4", "7", "-4", "1"],
+                cat: "pascal"
+            },
+            {
+                id: 118,
+                q: "Takrorlash (sikl) operatori asosan necha turga bo'linadi?",
+                answer: "3",
+                options: ["3", "5", "4", "6"],
+                cat: "pascal"
+            },
+            {
+                id: 119,
+                q: "Pascal tilida dasturning asosiy qismi qaysi maxsus so'z bilan boshlanadi?",
+                answer: "begin",
+                options: ["begin", "var", "program", "read"],
+                cat: "pascal"
+            },
+            {
+                id: 120,
+                q: "Algoritmning berilish usullari qaysi qatorda to'liq va to'g'ri berilgan?",
+                answer: "Sozlar orqali, formulalar orqali, jadval ko`rinishida, dastur shaklida, blok-sxema shaklida",
+                options: ["Sozlar orqali, formulalar orqali, jadval ko`rinishida, dastur shaklida, blok-sxema shaklida", "Faqat jadval ko`rinishida", "Formulalar va grafiklar orqali", "So'zlar va mantiqiy ifodalar orqali"],
+                cat: "pascal"
+            },
+            // --- NEW INTEGRATED DAK BANK QUESTIONS ---
+            {
+                id: 121,
+                q: "Quyida keltirilgan C++ dagi kod ekranga nima chiqaradi?\n\nint a = 5; float b = 2; cout<< b % a;",
+                answer: "kompilyasiyada xatolik",
+                options: ["kompilyasiyada xatolik", "2", "2.5", "0.4"],
+                cat: "cpp"
+            },
+            {
+                id: 122,
+                q: "C++ dagi ushbu kod ekranga nima chiqaradi?\n\nfloat a = 2; int b = 32; cout<< (pow(a, 5.0) == b);",
+                answer: "1",
+                options: ["1", "0", "32", "kompilyasiyada xatolik"],
+                cat: "cpp"
+            },
+            {
+                id: 123,
+                q: "C++ dagi kod ekranga nima chiqaradi?\n\nint a = 30; cout<< pow(a, 1 / 3);",
+                answer: "1",
+                options: ["1", "3.1072", "3", "0"],
+                cat: "cpp"
+            },
+            {
+                id: 124,
+                q: "C++ dagi ushbu kod ekranga nima chiqaradi?\n\nint a = 5; cout<< a / 2;",
+                answer: "2",
+                options: ["2", "2.5", "1", "3"],
+                cat: "cpp"
+            },
+            {
+                id: 125,
+                q: "C++ dagi kod ekranga nima chiqaradi?\n\nint a = 5; float b = 2; cout<< b / a;",
+                answer: "0.4",
+                options: ["0.4", "2", "2.5", "kompilyasiyada xatolik"],
+                cat: "cpp"
+            },
+            {
+                id: 126,
+                q: "C++ dagi ushbu kod ekranga nima chiqaradi?\n\nint i = 6; int j = i; cout<< (i * j);",
+                answer: "36",
+                options: ["36", "12", "15", "78"],
+                cat: "cpp"
+            },
+            {
+                id: 127,
+                q: "C++ dasturlash tilida qo'shtirnoq belgisini chop etuvchi buyruqni aniqlang.",
+                answer: "cout << \" \\\" \";",
+                options: ["cout << \" \\\" \";", "cout << \" \" \";", "cout << ' \" ';", "chiqarib bolmaydi"],
+                cat: "cpp"
+            },
+            {
+                id: 128,
+                q: "C++ dasturlash tilida o'zgaruvchilar qayerda e'lon qilinishi mumkin?",
+                answer: "ixtiyoriy joyda",
+                options: ["ixtiyoriy joyda", "main funksiyasidan tashqarida", "main funksiyasini ichida", "faqat funksiyalar ichida"],
+                cat: "cpp"
+            },
+            {
+                id: 129,
+                q: "char tipi xotiradan qancha joy ajratadi?",
+                answer: "1 bayt",
+                options: ["1 bayt", "2 bayt", "4 bayt", "8 bayt"],
+                cat: "cpp"
+            },
+            {
+                id: 130,
+                q: "food struktura toifali o'zgaruvchini to'g'ri tavsiflangan javobni tanlang.",
+                answer: "food var;",
+                options: ["food var;", "struct food;", "food;", "int food;"],
+                cat: "oop"
+            },
+            {
+                id: 131,
+                q: "for takrorlanuvchi operatorining takrorlanishlar sonini aniqlang: \n\nfor( ; ;)",
+                answer: "cheksiz",
+                options: ["cheksiz", "0", "1", "kompilyasiyada xatolik"],
+                cat: "cpp"
+            },
+            {
+                id: 132,
+                q: "int tipi xotiradan qancha joy ajratadi?",
+                answer: "4 bayt",
+                options: ["4 bayt", "2 bayt", "6 bayt", "8 bayt"],
+                cat: "cpp"
+            },
+            {
+                id: 133,
+                q: "32-bitli tizimda int tipining eng katta qiymatini aniqlang.",
+                answer: "2147483647",
+                options: ["2147483647", "32768", "2147483648", "32767"],
+                cat: "cpp"
+            },
+            {
+                id: 134,
+                q: "32-bitli tizimda int tipining eng kichik qiymatini aniqlang.",
+                answer: "-2147483648",
+                options: ["-2147483648", "-32767", "-32768", "-2147483647"],
+                cat: "cpp"
+            },
+            {
+                id: 135,
+                q: "pow() funksiyasining vazifasi nima?",
+                answer: "sonni darajaga kotarish",
+                options: ["sonni darajaga kotarish", "sondan kvadrat ildiz olish", "pi ning qiymatini aniqlash", "e ning qiymatini aniqlash"],
+                cat: "cpp"
+            },
+            {
+                id: 136,
+                q: "S o'zgaruvchining qiymati nimaga teng bo'ladi?\n\nint a=4;\nint b=3;\ndouble s=a/b;",
+                answer: "1",
+                options: ["1", "1.333333", "2", "kompilyasiyada xatolik"],
+                cat: "cpp"
+            },
+            {
+                id: 137,
+                q: "string tipi xotiradan qancha joy ajratadi?",
+                answer: "4 bayt",
+                options: ["4 bayt", "2 bayt", "6 bayt", "8 bayt"],
+                cat: "cpp"
+            },
+            {
+                id: 138,
+                q: "y = a*x^3 + 7 ifodani hisoblash uchun keltirilgan operatorlarning noto'g'risini tanlang:\n\n1) y = a * x * x * (x + 7) ;\n2) y=(a * x ) * ( x * x + 7);\n3) y = (a * x ) * x * x + 7 ;\n4) y = a * ( x * x )* x + 7 ;\n5) y = a * ( x * x * x ) + 7 ;",
+                answer: "1,2",
+                options: ["1,2", "2,3", "3,4", "3,5"],
+                cat: "cpp"
+            },
+            {
+                id: 139,
+                q: "y = a*x^3 + 7 ifodani hisoblash uchun keltirilgan operatorlarning to'g'risini tanlang:\n\n1) y = a * x * x * (x + 7) ;\n2) y=(a * x ) * ( x * x + 7);\n3) y = (a * x )* x * x + 7 ;\n4) y = a * pow( x, 3 ) + x + 7 ;\n5) y = a * pow( x, 3 ) + 7 ;",
+                answer: "3,5",
+                options: ["3,5", "1,2", "2,3", "3,4"],
+                cat: "cpp"
+            },
+            {
+                id: 140,
+                q: "Ekranga qanday natija chiqariladi?\n\nint s = 0; \nfor (int i = 0; i <= 7; i++)\n  s=s+i; \ncout<<s;",
+                answer: "28",
+                options: ["28", "25", "22", "20"],
+                cat: "cpp"
+            },
+            {
+                id: 141,
+                q: "OOP dagi Abstraksiya tushunchasi bu — ...",
+                answer: "obektni boshqa obektlardan farqlaydigan, hamda konseptual chegaralarini aniq korsatadigan obekt xarakteristikasidir",
+                options: [
+                    "obektni boshqa obektlardan farqlaydigan, hamda konseptual chegaralarini aniq korsatadigan obekt xarakteristikasidir",
+                    "yangi sinfni avvaldan malum bolgan sinflar xususiyatlaridan foydalangan holda hosil qilish imkonini beruchi obektga yonaltirilgan dasturlash mexanizimidir",
+                    "dasturchiga ishlatilayotgan komponentaning murakkabligini etiborga olmagan holda muamoni hal etishga imkon beruvchi dasturlash tili xususiyatidir",
+                    "Bir xil spetsifikatsiyaga ega obektlarning turli talqin qilish imkoniyati"
+                ],
+                cat: "oop"
+            },
+            {
+                id: 142,
+                q: "Agar x=6; y=6; bo'lsa, quyidagi kod bajarilganda ekranda nima chop etiladi?\n\nif ( x > 5) { \n  if ( y > 5 ) \n    cout<< \"x and y are > 5\"; \n} else \n  cout<< \"x is <= 5\";",
+                answer: "x and y are > 5",
+                options: ["x and y are > 5", "x is <= 5", "x and y are > 5 va x is <= 5", "Hech narsa chop etilmaydi"],
+                cat: "cpp"
+            },
+            {
+                id: 143,
+                q: "Agar int x; float y; bo'lsa, qiymat berish operatorlaridan qaysi biri to'g'ri?",
+                answer: "y = x + 2.3;",
+                options: ["y = x + 2.3;", "x:=2.0", "y = y / x", "Barcha javoblar to'g'ri"],
+                cat: "cpp"
+            },
+            {
+                id: 144,
+                q: "Dastur ishga tushirilib, \"Dasturlash tillari\" kiritilsa, natija qanaqa bo'ladi?\n\n#include <iostream>\nusing namespace std;\nint main() {\n  char s[7];\n  cin.getline(s,7);\n  cout << s << endl;\n  return 0;\n}",
+                answer: "Dastur",
+                options: ["Dastur", "Dasturla", "Dasturlash", "Dasturlash tillari"],
+                cat: "cpp"
+            },
+            {
+                id: 145,
+                q: "Binar daraxt — bu ...",
+                answer: "Tugunlardan iborat bolgan malumotlarning dinamik korinishi bolib, tugunlarda malumotdan tashqari kamida ikkita havolalar mavjud boladi.",
+                options: [
+                    "Tugunlardan iborat bolgan malumotlarning dinamik korinishi bolib, tugunlarda malumotdan tashqari kamida ikkita havolalar mavjud boladi.",
+                    "Malumotlarning dinamik korinishi bolib, unga elementlar boshidan qoshilib oxiridan olib tashlanadi.",
+                    "Malumotlarning dinamik korinishi bolib, kamida ikkita xavolalar mavjud boladi.",
+                    "Malumotlarning statik korinishi bolib, unga elementlar boshidan qoshilib oxiridan olib tashlanadi."
+                ],
+                cat: "pascal"
+            },
+            {
+                id: 146,
+                q: "Bir obektni boshqa bir obektga ozlashtirish amalini bajarish uchun nima talab etiladi?",
+                answer: "Ikki obektni bir xil nomli sinf orqali vavsiflash zarur va sinfda nusxalash konstruktorini bolishi talab etiladi",
+                options: [
+                    "Ikki obektni bir xil nomli sinf orqali vavsiflash zarur va sinfda nusxalash konstruktorini bolishi talab etiladi",
+                    "Ushbu obektlar sinfida maxsus konstruktor nusxalash konstruktorining bolishi yetarli",
+                    "Ushbu obektlar sinflarini bir xil tavsiflash zarur",
+                    "Ushbu obekt sinflarida konstruktorlar va dekonstruktorlarning bolishi yetarli"
+                ],
+                cat: "oop"
+            },
+            {
+                id: 147,
+                q: "Dastur lavhasi bajarilganda ekranda qanday natija paydo boladi?\n\nint k, I = 69; \nif (I > 50) { \n  k = I % 10; \n  cout << k; \n} else { \n  float t = I / 10; \n  cout << t; \n}",
+                answer: "9",
+                options: ["9", "7", "6", "0.69"],
+                cat: "cpp"
+            },
+            {
+                id: 148,
+                q: "Dastur bo'lagi bajarilgach ekranda paydo bo'ladigan belgilar soni nechta?\n\nfor (x=3; x>=2; x--) \n  cout << \"+\" << \"_\" << endl;",
+                answer: "4",
+                options: ["4", "3", "2", "kompilyasiyada xatolik"],
+                cat: "cpp"
+            },
+            {
+                id: 149,
+                q: "Dastur bo'lagi necha marotaba takrorlanadi?\n\nfor (x=3; x<=0; x--) \n  cout << \"+\" << \"_\" << endl;",
+                answer: "takrorlanmaydi",
+                options: ["takrorlanmaydi", "2", "3", "4"],
+                cat: "cpp"
+            },
+            {
+                id: 150,
+                q: "Dastur bo'lagi necha marotaba takrorlanadi?\n\nfor (x=3; x>=0; x--) \n  cout << \"+\" << \"_\";",
+                answer: "4",
+                options: ["4", "3", "6", "5"],
+                cat: "cpp"
+            },
+            {
+                id: 151,
+                q: "Dastur bo'lagi necha marotaba takrorlanadi?\n\nfor (x=4; x>=0; x--) \n  cout << \"+\" << \"_\" << endl;",
+                answer: "5",
+                options: ["5", "6", "3", "4"],
+                cat: "cpp"
+            },
+            {
+                id: 152,
+                q: "Dastur bo'lagidagi xatoliklarni va ularning sonini aniqlang:\n\nfor (x=1, x>=1, i++) \n  cout >> x >> endl;",
+                answer: "6",
+                options: ["6", "4", "3", "2"],
+                cat: "cpp"
+            },
+            {
+                id: 153,
+                q: "Dastur bo'lagidagi xatoliklarni va ularning sonini aniqlang:\n\nfor (x=10, x>=1, x--) \n  cout >> x >> endl;",
+                answer: "4",
+                options: ["4", "3", "2", "1"],
+                cat: "cpp"
+            },
+            {
+                id: 154,
+                q: "Dastur bo'lagidagi xatoliklarni va ularning sonini aniqlang:\n\nfor (x=100; x>=10; x--) \n  cout << x << endl;",
+                answer: "Xatolik yoq",
+                options: ["Xatolik yoq", "1", "2", "3"],
+                cat: "cpp"
+            },
+            {
+                id: 155,
+                q: "Dastur kompilyatsiya qilingach identifikator nima bilan almashtiriladi?",
+                answer: "xotira yacheykasi adresi bilan almashtiriladi",
+                options: ["xotira yacheykasi adresi bilan almashtiriladi", "nomi ozgaradi", "oz xolicha qoladi", "ikkilik kodi bilan almashtiriladi"],
+                cat: "cpp"
+            },
+            {
+                id: 156,
+                q: "Edit bo'limidagi amallar haqida qaysi fikr noto'g'ri?",
+                answer: "dastur chop ettiriladi",
+                options: ["dastur chop ettiriladi", "belgilangan bo'lakni olib tashlanadi", "bo'lakni nusxasini hosil qilinadi", "hammasi to'g'ri"],
+                cat: "cpp"
+            },
+            {
+                id: 157,
+                q: "Algoritmning xossalarini to'g'ri ko'rsatilgan qatorni aniqlang.",
+                answer: "diskretlilik, tushunarlilik, aniqlik, ommaviylik, natijaviylik",
+                options: ["diskretlilik, tushunarlilik, aniqlik, ommaviylik, natijaviylik", "diskretlilik, tushunarlilik, aniqlik", "diskretlilik, tushunarlilik, aniqlik, ommaviylik", "barchasi noto'g'ri"],
+                cat: "pascal"
+            },
+            {
+                id: 158,
+                q: "Byte qancha qiymat qabul qiluvchi ishorasiz butun son hisoblanadi?",
+                answer: "0 dan 255 gacha",
+                options: ["0 dan 255 gacha", "1 dan 263 gacha", "-4 dan 300 gacha", "-2 dan 267 gacha"],
+                cat: "pascal"
+            },
+            {
+                id: 159,
+                q: "shortint qancha qiymat qabul qiluvchi ishorali butun son?",
+                answer: "-128 dan 127 gacha",
+                options: ["-128 dan 127 gacha", "-12 dan 130 gacha", "123 dan 128 gacha", "-127 dan 128 gacha"],
+                cat: "pascal"
+            },
+            {
+                id: 160,
+                q: "word qancha qiymat qabul qiluvchi ishorasiz butun son?",
+                answer: "0 dan 65535 gacha",
+                options: ["0 dan 65535 gacha", "1 dan 68535 gacha", "0 dan 68535 gacha", "0 dan 66535 gacha"],
+                cat: "pascal"
+            },
+            {
+                id: 161,
+                q: "Pascalda integer toifasi qancha qiymat qabul qiluvchi ishorali butun son?",
+                answer: "-32768 dan 32767 gacha",
+                options: ["-32768 dan 32767 gacha", "-32860 dan 30000 gacha", "32768 dan 32767 gacha", "-40000 dan 50000 gacha"],
+                cat: "pascal"
+            },
+            {
+                id: 162,
+                q: "Longint qancha qiymat qabul qiluvchi ishorali uzun butun son?",
+                answer: "-2147483648 dan 2147483647 gacha",
+                options: ["-2147483648 dan 2147483647 gacha", "-2147483648 dan 21477483600 gacha", "2147483648 dan 2147483647 gacha", "2000436715 dan 2745658485 gacha"],
+                cat: "pascal"
+            },
+            {
+                id: 163,
+                q: "Operatorlar algoritmik tillarda asosiy tushuncha bo'lib, o'z navbatida necha guruhga bo'linadi?",
+                answer: "2 guruhga",
+                options: ["2 guruhga", "3 guruhga", "4 guruhga", "5 guruhga"],
+                cat: "pascal"
+            },
+            {
+                id: 164,
+                q: "Paskal tilida alfavitni necha qismga bo'lish mumkin?",
+                answer: "3 qismga: lotin harflari, arab raqamlari, maxsus belgilar",
+                options: ["3 qismga: lotin harflari, arab raqamlari, maxsus belgilar", "1 guruhga: faqat ingliz alfaviti", "2 qismga: raqamlar va ingliz alfaviti", "Bo'linmaydi"],
+                cat: "pascal"
+            },
+            {
+                id: 165,
+                q: "Masalani yechishda blok-sxemalar necha guruhga bo'linadi va ular qaysilar?",
+                answer: "3 qismga: chiziqli, tarmoqlanuvchi, takrorlanuvchi",
+                options: ["3 qismga: chiziqli, tarmoqlanuvchi, takrorlanuvchi", "2 qismga: chiziqli va tarmoqlanuvchi", "1 qismga: faqat chiziqli", "4 qismga bo'linadi"],
+                cat: "pascal"
+            },
+            {
+                id: 166,
+                q: "Dastur tanasini (kod bloklarini) qisqacha qilib yana qanday ataladi?",
+                answer: "blok",
+                options: ["blok", "metka", "operatorlar", "tanasi"],
+                cat: "pascal"
+            },
+            {
+                id: 167,
+                q: "Shartli operatorlarning sintaksis qoidasiga ko'ra then va else so'zlaridan keyin nechta ifoda yozilishi mumkin?",
+                answer: "1",
+                options: ["1", "3", "2", "Cheksiz"],
+                cat: "pascal"
+            },
+            {
+                id: 168,
+                q: "Algoritmlar hisoblash jarayonlarini shartli ravishda nechta guruhga ajratish mumkin?",
+                answer: "3",
+                options: ["3", "2", "4", "5"],
+                cat: "pascal"
+            },
+            {
+                id: 169,
+                q: "Belgili tipni qabul qiluvchi o'zgaruvchilarni e'lon qilish uchun qaysi xizmatchi so'zdan foydalaniladi?",
+                answer: "char",
+                options: ["char", "integer", "real", "boolean"],
+                cat: "pascal"
+            },
+            {
+                id: 170,
+                q: "Mantiqiy qiymatli toifadagi o'zgaruvchilar qaysi xizmatchi so'z orqali e'lon qilinadi?",
+                answer: "Boolean",
+                options: ["Boolean", "char", "integer", "var"],
+                cat: "pascal"
+            },
+            {
+                id: 171,
+                q: "Paskal tilida asosan necha xil o'zgaruvchan yoki o'zgarmas miqdorlar ishlatiladi?",
+                answer: "4 xil: belgili, satr, mantiqiy, haqiqiy",
+                options: ["4 xil: belgili, satr, mantiqiy, haqiqiy", "2 xil: jadval, belgili", "2 xil: belgili, sonli", "1 xil: ozgarmas"],
+                cat: "pascal"
+            },
+            {
+                id: 172,
+                q: "Paskal dasturlash tilidagi standart funksiyalar argumenti doimo qanday yoziladi?",
+                answer: "qavs ichida",
+                options: ["qavs ichida", "belgi orqali", "nuqta orqali", "vergul orqali"],
+                cat: "pascal"
+            },
+            {
+                id: 173,
+                q: "O'zlashtirish operatori qanday vazifani bajaradi?",
+                answer: "ozgaruvchilarga qiymat berish uchun qollaniladi",
+                options: ["ozgaruvchilarga qiymat berish uchun qollaniladi", "operatorga qiymat berishda", "songa qiymat berishda", "mantiqiy qiymat berishda"],
+                cat: "pascal"
+            },
+            {
+                id: 174,
+                q: "Paskal tilida ishlatiladigan mantiqiy amallarni ko'rsating.",
+                answer: "NOT, OR, AND",
+                options: ["NOT, OR, AND", "+; -; *; /; OR; AND", "MOD, NOT, OR", "Div, MOD, AND, NOT, OR."],
+                cat: "pascal"
+            },
+            {
+                id: 175,
+                q: "Algoritm deb ... aytiladi.",
+                answer: "masalani yechish uchun bajarilishi lozim bolgan amallar ketma-ketligini aniq tavsiflaydigan qoidalar tizimiga",
+                options: [
+                    "masalani yechish uchun bajarilishi lozim bolgan amallar ketma-ketligini aniq tavsiflaydigan qoidalar tizimiga",
+                    "masalani yozish, uning ustida ishlash va o'chirib tashlash tushuniladi",
+                    "tayinlangan aniq vazifani bajarishga aytiladi",
+                    "kompyuter xotirasidagi ma'lumotlarni saralashga"
+                ],
+                cat: "pascal"
+            },
+            {
+                id: 176,
+                q: "Algoritmning samaradorligini baholash uchun qaysi asosiy mezonlar olinadi?",
+                answer: "xotira hajmi va ijro vaqti",
+                options: ["xotira hajmi va ijro vaqti", "aniqlik va tushunarlilik", "zaruriy xotira xajmi", "foydalanish qulayligi"],
+                cat: "pascal"
+            },
+            {
+                id: 177,
+                q: "Quyidagi o'zgaruvchilarni tasvirlash qismlaridan qaysi biri xatosiz yozilgan?",
+                answer: "Var sum: real; last: integer; Lambada: char; kara1: boolean;",
+                options: [
+                    "Var sum: real; last: integer; Lambada: char; kara1: boolean;",
+                    "Var s1, nnNN, x[50]: char; f, y, a: integer;",
+                    "Var true, false: boolean; a, A1, max: real;",
+                    "Var coef, k15: boolean; var: char;"
+                ],
+                cat: "pascal"
+            },
+            {
+                id: 178,
+                q: "Chiqarish operatorini oddiy holda yozilgan: Write(V1, V2, ..., VN); bu yerda V'lar o'rnida nima kelishi mumkin?",
+                answer: "Ozgarmaslar yoki ixtiyoriy turdagi ifodalar",
+                options: ["Ozgarmaslar yoki ixtiyoriy turdagi ifodalar", "Faqat ozgarmaslar", "Faqat nishonlar", "Faqat fayl nomlari"],
+                cat: "pascal"
+            },
+            {
+                id: 179,
+                q: "Dasturda o'zgarmaslar bo'limi qaysi kalit so'z bilan boshlanadi?",
+                answer: "Const",
+                options: ["Const", "Var", "Type", "Label"],
+                cat: "pascal"
+            },
+            {
+                id: 180,
+                q: "Dasturda o'zgaruvchilar bo'limi qaysi kalit so'z bilan boshlanadi?",
+                answer: "Var",
+                options: ["Var", "Const", "Type", "Label"],
+                cat: "pascal"
+            },
+            {
+                id: 181,
+                q: "Pascalda nishonlar (metkalar) bo'limi qaysi so'z bilan boshlanadi?",
+                answer: "Label",
+                options: ["Label", "Type", "Var", "Const"],
+                cat: "pascal"
+            },
+            {
+                id: 182,
+                q: "Parametrli sikl operatori qaysi javobda to'g'ri berilgan?",
+                answer: "for, to, do;",
+                options: ["for, to, do;", "if, then, else;", "while, do", "repeat, until"],
+                cat: "pascal"
+            },
+            {
+                id: 183,
+                q: "Dastur natijasi nimaga teng?\n\nvar a, b, x: real; \nbegin \n  a:=8; b:=a/2; x:=A/B; \n  x:=sqr(sqrt(x+b/2)); \n  writeln(x:0:0); \nend.",
+                answer: "4",
+                options: ["4", "32", "24", "16"],
+                cat: "pascal"
+            },
+            {
+                id: 184,
+                q: "Agar i, y integer va x, z real bo'lsa, quyidagilarning qaysi birida xatolik yuz beradi?",
+                answer: "i:=sin(x)",
+                options: ["i:=sin(x)", "x:=sqrt(z)", "x:=sqrt(i)", "z:=sin(i)"],
+                cat: "pascal"
+            },
+            {
+                id: 185,
+                q: "Quyidagi operator necha marta takrorlanadi?\n\nfor x:=1 downto 10 do write (x);",
+                answer: "0 marta",
+                options: ["0 marta", "5 marta", "10 marta", "1 marta"],
+                cat: "pascal"
+            },
+            {
+                id: 186,
+                q: "Quyida write operatori necha marta bajariladi?\n\nfor i:=1 to 3 do \n  for j:=0 to 3 do \n    write (i+j);",
+                answer: "12 marta",
+                options: ["12 marta", "3 marta", "9 marta", "1 marta"],
+                cat: "pascal"
+            },
+            {
+                id: 187,
+                q: "type hafta=(dush, sesh, shor, paysh, shanba, yaksh); var x,y: hafta; t:23..56; bo'lsa, qaysi o'zlashtirish noto'g'ri?",
+                answer: "y:=t",
+                options: ["y:=t", "x:=sesh", "y:=x", "t:=31"],
+                cat: "pascal"
+            },
+            {
+                id: 188,
+                q: "Quyida S ning qiymati nimaga teng bo'ladi?\n\nbegin \n  S:=0; \n  for I:=1 to 3 do \n    S:=S+2*I; \n  writeln(S); \nend.",
+                answer: "12",
+                options: ["12", "24", "48", "96"],
+                cat: "pascal"
+            },
+            {
+                id: 189,
+                q: "Dastur bajarilganda z qiymati nimaga teng bo'ladi?\n\nbegin \n  X:=-2; Y:=4; A:=-2; \n  if A*A-y>x*x then \n    z:=y+A \n  else \n    z:=X+A; \n  writeln(z); \nend.",
+                answer: "-4",
+                options: ["-4", "-1", "-7", "-5"],
+                cat: "pascal"
+            },
+            {
+                id: 190,
+                q: "Dastur natijasini aniqlang:\n\nbegin \n  A:=12; B:=8; D:=20; \n  if A>18 then \n    D:=A-B; \n  writeln(D); \nend.",
+                answer: "20",
+                options: ["20", "8", "4", "12"],
+                cat: "pascal"
+            },
+            {
+                id: 191,
+                q: "Hisob natijasini aniqlang:\n\nbegin \n  A:=10; B:=8; S:=6; \n  if (A>B) and (S>B) then \n    y:=A+B-S \n  else \n    y:=A-B+S; \n  writeln(y); \nend.",
+                answer: "8",
+                options: ["8", "12", "10", "14"],
+                cat: "pascal"
+            },
+            {
+                id: 192,
+                q: "Hisob natijasini aniqlang:\n\nbegin \n  a:=12; b:=14; s:=10; \n  if (a>b) or (b>s) then \n    y:=a+b-s \n  else \n    y:=a-b+s; \n  writeln(y); \nend.",
+                answer: "16",
+                options: ["16", "14", "8", "6"],
+                cat: "pascal"
+            },
+            {
+                id: 193,
+                q: "Pascalda satrlar ketma-ketligini qo'shish (birlashtirish) funksiyasi qaysi?",
+                answer: "Concat",
+                options: ["Concat", "Insert", "Delete", "Copy"],
+                cat: "pascal"
+            },
+            {
+                id: 194,
+                q: "Qaysi ma'lumotlar tipi simvolli tipga kiradi?",
+                answer: "char",
+                options: ["char", "real", "integer", "boolean"],
+                cat: "pascal"
+            },
+            {
+                id: 195,
+                q: "Paskalda quyidagi ifoda bajarilsa natija nima bo'ladi?\n\na=5, b=15, c=2 bo'lsa:\n(a+b div c * 4) mod 5 div 3",
+                answer: "1",
+                options: ["1", "2", "3", "4"],
+                cat: "pascal"
+            },
+            {
+                id: 196,
+                q: "Dastur lavhasida X qaysi qiymatni qabul qiladi?\n\nVAR i,j,X: integer; \nBEGIN \n  FOR i:=1 TO 2 DO \n    FOR j:=2 DOWNTO 1 DO \n      X:=i+j; \nEND.",
+                answer: "3",
+                options: ["3", "7", "4", "10"],
+                cat: "pascal"
+            },
+            {
+                id: 197,
+                q: "Takrorlanishlar sonini aniqlang:\n\ni:=1999; \nwhile i<2016 do \n  i:=i+1",
+                answer: "17",
+                options: ["17", "0", "18", "19"],
+                cat: "pascal"
+            },
+            {
+                id: 198,
+                q: "Pascal dasturlash tili muallifi kim?",
+                answer: "N. Virt",
+                options: ["N. Virt", "B. Pascal", "M. Fortran", "Bjarne Stroustrup"],
+                cat: "pascal"
+            },
+            {
+                id: 199,
+                q: "Qaysi qatorda sintaktik xatolik mavjud?",
+                answer: "If a<b then min:=a; else min:=b;",
+                options: [
+                    "If a<b then min:=a; else min:=b;",
+                    "If B=0 then writeln('Xatolik');",
+                    "If a>b then max := a else max:=b;",
+                    "If (a>b) and (b>0) then c:=a+b;"
+                ],
+                cat: "pascal"
+            },
+            {
+                id: 200,
+                q: "Tiplarni (user-defined types) aniqlaydigan bo'lim qaysi kalit so'z bilan boshlanadi?",
+                answer: "TYPE",
+                options: ["TYPE", "LABEL", "VAR", "BEGIN"],
+                cat: "pascal"
+            }
+        ];
+
+        // Global State variables
+        let activeQuestions = [];
+        let currentIndex = 0;
+        let quizMode = 'study'; // 'study' or 'exam'
+        let examTimerInterval = null;
+        let examSecondsLeft = 3600; // 60 minutes
+        let examAnswers = {}; // { qId: selectedOption }
+        let studyResults = {}; // { qId: { correct: boolean, selectedOption: string } }
+        let bookmarkedQuestionIds = JSON.parse(localStorage.getItem('bookmarked_modern_prog_questions') || '[]');
+
+        // Initialize Theme from localStorage
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Window Onload Starter
+        window.onload = function() {
+            updateThemeToggleButton();
+            loadStateFromLocalStorage();
+            
+            // Build and Shuffle questions once on start so options are shuffled
+            initializeQuestions();
+            
+            filterQuestions(); // Initial filter & render
+        }
+
+        // Prepare raw database and dynamically shuffle the options list for each question once
+        function initializeQuestions() {
+            // Deep copy and prepare with options randomized on startup
+            activeQuestions = rawQuestionsData.map(q => {
+                const shuffledOpts = shuffleArray([...q.options]);
+                return {
+                    ...q,
+                    options: shuffledOpts
+                };
+            });
+        }
+
+        function loadStateFromLocalStorage() {
+            const savedStudyResults = localStorage.getItem('modern_prog_study_results');
+            if (savedStudyResults) {
+                studyResults = JSON.parse(savedStudyResults);
+            }
+        }
+
+        function saveStateToLocalStorage() {
+            localStorage.setItem('modern_prog_study_results', JSON.stringify(studyResults));
+            localStorage.setItem('bookmarked_modern_prog_questions', JSON.stringify(bookmarkedQuestionIds));
+        }
+
+        // Fisher-Yates Shuffle algorithm
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Shuffle current active questions lists
+        function shuffleCurrentQuestions() {
+            activeQuestions = shuffleArray(activeQuestions);
+            activeQuestions.forEach(q => {
+                q.options = shuffleArray([...q.options]);
+            });
+            currentIndex = 0;
+            renderQuiz();
+            renderQuestionMap();
+        }
+
+        // Toggle study / exam mode
+        function changeQuizMode(mode) {
+            quizMode = mode;
+            const studyBtn = document.getElementById('modeStudyBtn');
+            const examBtn = document.getElementById('modeExamBtn');
+            const timerContainer = document.getElementById('examTimerContainer');
+            const examSubmitBtn = document.getElementById('examSubmitBtn');
+
+            if (mode === 'study') {
+                studyBtn.classList.add('bg-white', 'dark:bg-slate-800', 'text-brand-600', 'shadow-sm');
+                studyBtn.classList.remove('text-slate-500', 'dark:text-slate-400');
+                examBtn.classList.remove('bg-white', 'dark:bg-slate-800', 'text-brand-600', 'shadow-sm');
+                examBtn.classList.add('text-slate-500', 'dark:text-slate-400');
+                timerContainer.classList.add('hidden');
+                examSubmitBtn.classList.add('hidden');
+                clearInterval(examTimerInterval);
+            } else {
+                examBtn.classList.add('bg-white', 'dark:bg-slate-800', 'text-brand-600', 'shadow-sm');
+                examBtn.classList.remove('text-slate-500', 'dark:text-slate-400');
+                studyBtn.classList.remove('bg-white', 'dark:bg-slate-800', 'text-brand-600', 'shadow-sm');
+                studyBtn.classList.add('text-slate-500', 'dark:text-slate-400');
+                timerContainer.classList.remove('hidden');
+                examSubmitBtn.classList.remove('hidden');
+                startExamTimer();
+            }
+            renderQuiz();
+            renderQuestionMap();
+        }
+
+        function startExamTimer() {
+            clearInterval(examTimerInterval);
+            examSecondsLeft = 3600; // 60 minutes
+            updateTimerDisplay();
+            examTimerInterval = setInterval(() => {
+                examSecondsLeft--;
+                updateTimerDisplay();
+                if (examSecondsLeft <= 0) {
+                    clearInterval(examTimerInterval);
+                    finishExam(true); // submit immediately
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(examSecondsLeft / 60);
+            const seconds = examSecondsLeft % 60;
+            document.getElementById('examTimerText').innerText = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Filtering logic
+        function filterQuestions() {
+            const filterVal = document.getElementById('categoryFilter').value;
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+
+            // Re-filter copy from master raw questions but preserving custom option shuffles if any
+            activeQuestions = rawQuestionsData.filter(q => {
+                const matchesSearch = q.q.toLowerCase().includes(searchVal) || q.answer.toLowerCase().includes(searchVal);
+                
+                if (filterVal === 'all') {
+                    return matchesSearch;
+                } else if (filterVal === 'bookmarked') {
+                    return bookmarkedQuestionIds.includes(q.id) && matchesSearch;
+                } else {
+                    return q.cat === filterVal && matchesSearch;
+                }
+            });
+
+            document.getElementById('filteredCountBadge').innerText = `${activeQuestions.length} / ${rawQuestionsData.length}`;
+            currentIndex = 0;
+            renderQuiz();
+            renderQuestionMap();
+            updateStats();
+        }
+
+        // Core Render Question Card function
+        function renderQuiz() {
+            const container = document.getElementById('optionsListContainer');
+            const explanationCard = document.getElementById('explanationCard');
+            
+            if (activeQuestions.length === 0) {
+                document.getElementById('questionTextDisplay').innerText = "Belgilangan kalit bo'yicha savol topilmadi! Iltimos, filter yoki qidiruvni o'zgartiring.";
+                document.getElementById('questionIndexBadge').innerText = "SAVOL 0";
+                document.getElementById('questionSourceBadge').innerText = "";
+                container.innerHTML = `
+                    <div class="p-6 text-center text-slate-400 dark:text-slate-500 font-semibold border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-2xl">
+                        Natija topilmadi.
+                    </div>`;
+                explanationCard.classList.add('hidden');
+                return;
+            }
+
+            const current = activeQuestions[currentIndex];
+            
+            // Set labels
+            document.getElementById('questionIndexBadge').innerText = `SAVOL ${currentIndex + 1} / ${activeQuestions.length}`;
+            
+            // Render nice category labels
+            let catName = "C++ Asoslari";
+            if (current.cat === 'stl') catName = "STL Kutubxonasi";
+            if (current.cat === 'oop') catName = "OOP & Klasslar";
+            if (current.cat === 'pascal') catName = "Pascal & Algoritmlar";
+            document.getElementById('questionSourceBadge').innerText = catName;
+
+            document.getElementById('questionTextDisplay').innerText = current.q;
+
+            // Handle Bookmarked Icon Toggle
+            const bookmarkBtn = document.getElementById('bookmarkBtn');
+            if (bookmarkedQuestionIds.includes(current.id)) {
+                bookmarkBtn.classList.remove('text-slate-300', 'dark:text-slate-600');
+                bookmarkBtn.classList.add('text-amber-500');
+            } else {
+                bookmarkBtn.classList.add('text-slate-300', 'dark:text-slate-600');
+                bookmarkBtn.classList.remove('text-amber-500');
+            }
+
+            // Options logic
+            container.innerHTML = "";
+            explanationCard.classList.add('hidden');
+
+            const studyAns = studyResults[current.id];
+            const examAns = examAnswers[current.id];
+
+            current.options.forEach((opt, idx) => {
+                const charLabel = String.fromCharCode(65 + idx); // A, B, C, D
+                const button = document.createElement('button');
+                button.className = "w-full p-4 rounded-2xl text-left border text-sm sm:text-base font-semibold transition-all flex items-center justify-between gap-3 active:scale-[0.99] ";
+                
+                button.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center font-bold shrink-0 shadow-sm text-xs sm:text-sm">
+                            ${charLabel}
+                        </span>
+                        <span class="text-slate-700 dark:text-slate-200 leading-snug font-mono">${escapeHtml(opt)}</span>
+                    </div>
+                `;
+
+                if (quizMode === 'study') {
+                    if (studyAns) {
+                        button.disabled = true;
+                        // highlight right or wrong
+                        if (opt === current.answer) {
+                            button.classList.add('border-emerald-500', 'bg-emerald-50/70', 'dark:bg-emerald-950/20');
+                            button.innerHTML += `<span class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs shadow"><i class="fa-solid fa-check"></i></span>`;
+                        } else if (opt === studyAns.selectedOption) {
+                            button.classList.add('border-rose-500', 'bg-rose-50/70', 'dark:bg-rose-950/20');
+                            button.innerHTML += `<span class="w-6 h-6 rounded-full bg-rose-500 text-white flex items-center justify-center text-xs shadow"><i class="fa-solid fa-xmark"></i></span>`;
+                        } else {
+                            button.classList.add('border-slate-200', 'dark:border-slate-800', 'opacity-60');
+                        }
+                    } else {
+                        button.classList.add('border-slate-200', 'dark:border-slate-800', 'hover:border-brand-500', 'hover:bg-slate-50', 'dark:hover:bg-slate-700/30');
+                        button.onclick = () => selectStudyOption(current.id, opt);
+                    }
+                } else {
+                    // Exam mode styling
+                    if (examAns === opt) {
+                        button.classList.add('border-yellow-500', 'bg-yellow-50/50', 'dark:bg-yellow-950/20');
+                        button.innerHTML += `<span class="w-6 h-6 rounded-full bg-yellow-500 text-white flex items-center justify-center text-xs shadow"><i class="fa-solid fa-pen-clip"></i></span>`;
+                    } else {
+                        button.classList.add('border-slate-200', 'dark:border-slate-800', 'hover:border-brand-500', 'hover:bg-slate-50', 'dark:hover:bg-slate-700/30');
+                    }
+                    button.onclick = () => selectExamOption(current.id, opt);
+                }
+
+                container.appendChild(button);
+            });
+
+            // If solved in study mode, render the explanation card
+            if (quizMode === 'study' && studyAns) {
+                explanationCard.classList.remove('hidden');
+                document.getElementById('explanationTextDisplay').innerText = `To'g'ri javob: "${current.answer}"`;
+            }
+        }
+
+        // Map Button Matrix
+        function renderQuestionMap() {
+            const container = document.getElementById('questionsMapContainer');
+            container.innerHTML = "";
+
+            activeQuestions.forEach((q, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "h-10 rounded-xl font-extrabold text-xs transition-all flex items-center justify-center active:scale-90 shadow-sm ";
+                
+                // Keep the exact original question order number (ID) on the button
+                btn.innerText = q.id;
+
+                const isCurrent = idx === currentIndex;
+                const studyAns = studyResults[q.id];
+                const examAns = examAnswers[q.id];
+
+                if (isCurrent) {
+                    btn.classList.add('ring-4', 'ring-brand-500/50', 'scale-105', 'z-10');
+                }
+
+                if (quizMode === 'study') {
+                    if (studyAns) {
+                        if (studyAns.correct) {
+                            btn.classList.add('bg-emerald-500', 'text-white', 'hover:bg-emerald-600');
+                        } else {
+                            btn.classList.add('bg-rose-500', 'text-white', 'hover:bg-rose-600');
+                        }
+                    } else {
+                        btn.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300', 'hover:bg-slate-200', 'dark:hover:bg-slate-700');
+                    }
+                } else {
+                    if (examAns) {
+                        btn.classList.add('bg-yellow-500', 'text-white', 'hover:bg-yellow-600');
+                    } else {
+                        btn.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300', 'hover:bg-slate-200', 'dark:hover:bg-slate-700');
+                    }
+                }
+
+                btn.onclick = () => {
+                    currentIndex = idx;
+                    renderQuiz();
+                    renderQuestionMap();
+                }
+
+                container.appendChild(btn);
+            });
+        }
+
+        // Option selection handlers
+        function selectStudyOption(qId, selectedOpt) {
+            const q = rawQuestionsData.find(item => item.id === qId);
+            const isCorrect = q.answer === selectedOpt;
+            studyResults[qId] = {
+                correct: isCorrect,
+                selectedOption: selectedOpt
+            };
+
+            playQuizSound(isCorrect ? 'correct' : 'wrong');
+            saveStateToLocalStorage();
+            updateStats();
+            renderQuiz();
+            renderQuestionMap();
+        }
+
+        // Option selection for Exam mode
+        function selectExamOption(qId, selectedOpt) {
+            examAnswers[qId] = selectedOpt;
+            updateStats();
+            renderQuiz();
+            renderQuestionMap();
+        }
+
+        // Stats progress calculation
+        function updateStats() {
+            let correct = 0;
+            let wrong = 0;
+            let totalAnswered = 0;
+
+            if (quizMode === 'study') {
+                rawQuestionsData.forEach(q => {
+                    if (studyResults[q.id]) {
+                        totalAnswered++;
+                        if (studyResults[q.id].correct) correct++;
+                        else wrong++;
+                    }
+                });
+            } else {
+                rawQuestionsData.forEach(q => {
+                    if (examAnswers[q.id]) {
+                        totalAnswered++;
+                        if (examAnswers[q.id] === q.answer) correct++;
+                        else wrong++;
+                    }
+                });
+            }
+
+            document.getElementById('correctCountText').innerText = correct;
+            document.getElementById('wrongCountText').innerText = wrong;
+            document.getElementById('answeredRatioText').innerText = `Yechildi: ${totalAnswered} / ${rawQuestionsData.length}`;
+            
+            const percent = totalAnswered > 0 ? Math.round((totalAnswered / rawQuestionsData.length) * 100) : 0;
+            document.getElementById('progressBarPercentage').innerText = `${percent}%`;
+            document.getElementById('progressBarFill').style.width = `${percent}%`;
+
+            document.getElementById('bookmarkCountText').innerText = `Yodda: ${bookmarkedQuestionIds.length}`;
+        }
+
+        // Simple HTML Escaper helper for coding tags
+        function escapeHtml(text) {
+            if (typeof text !== 'string') return text;
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Next/Prev navigation
+        function navigateToQuestion(direction) {
+            if (activeQuestions.length === 0) return;
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = activeQuestions.length - 1;
+            if (currentIndex >= activeQuestions.length) currentIndex = 0;
+            renderQuiz();
+            renderQuestionMap();
+        }
+
+        // Save Bookmarks
+        function toggleBookmarkActiveQuestion() {
+            if (activeQuestions.length === 0) return;
+            const current = activeQuestions[currentIndex];
+            const idxInBookmarks = bookmarkedQuestionIds.indexOf(current.id);
+
+            if (idxInBookmarks > -1) {
+                bookmarkedQuestionIds.splice(idxInBookmarks, 1);
+            } else {
+                bookmarkedQuestionIds.push(current.id);
+            }
+
+            saveStateToLocalStorage();
+            renderQuiz();
+            updateStats();
+        }
+
+        // Clean stats and starting fresh
+        function resetQuizState() {
+            studyResults = {};
+            examAnswers = {};
+            localStorage.removeItem('modern_prog_study_results');
+            updateStats();
+            renderQuiz();
+            renderQuestionMap();
+        }
+
+        // Exam submission prompts
+        function finishExamPrompt() {
+            const answeredCount = Object.keys(examAnswers).length;
+            const confirmed = confirm(`Jami ${rawQuestionsData.length} ta savoldan ${answeredCount} tasiga javob berdingiz. Haqiqatdan ham imtihonni yakunlashni xohlaysizmi?`);
+            if (confirmed) {
+                finishExam(false);
+            }
+        }
+
+        function finishExam(isTimeout = false) {
+            clearInterval(examTimerInterval);
+            
+            let correct = 0;
+            let wrong = 0;
+            rawQuestionsData.forEach(q => {
+                const ans = examAnswers[q.id];
+                if (ans) {
+                    if (ans === q.answer) correct++;
+                    else wrong++;
+                }
+            });
+
+            const total = rawQuestionsData.length;
+            const percent = Math.round((correct / total) * 100);
+
+            // Populate Modal stats
+            document.getElementById('modalTotalAnswered').innerText = Object.keys(examAnswers).length;
+            document.getElementById('modalCorrect').innerText = correct;
+            document.getElementById('modalIncorrect').innerText = wrong;
+            document.getElementById('modalPercentText').innerText = `To'g'ri javob ko'rsatkichi: ${percent}%`;
+            document.getElementById('modalPercentBar').style.width = `${percent}%`;
+
+            // Gradings
+            let gradeText = "";
+            if (percent >= 86) {
+                gradeText = "A'LO! Attestatsiya sinovidan a'lo natija bilan o'tdingiz. Zamonaviy dasturlash tillari bo'yicha yuqori malakaga egasiz.";
+            } else if (percent >= 71) {
+                gradeText = "YAXSHI! Yaxshi ko'rsatkich qayd etildi. Bir oz ko'proq mashq qilib natijani yanada oshirish mumkin.";
+            } else if (percent >= 55) {
+                gradeText = "QONIQLARLI. Attestatsiyadan o'tdingiz, lekin bilimingizni yanada mukammalroq qilish uchun o'rganish rejimida xatolar ustida ishlang.";
+            } else {
+                gradeText = "YAKUNIY SINODAN O'TMADI. To'g'ri ko'rsatkich yetarli emas. Iltimos, barcha savollarni o'rganish rejimida qayta ko'rib chiqing.";
+            }
+            document.getElementById('modalGradeText').innerText = gradeText;
+
+            // Trigger modal
+            document.getElementById('examResultModal').classList.remove('hidden');
+        }
+
+        function reviewExamAnswers() {
+            rawQuestionsData.forEach(q => {
+                const ans = examAnswers[q.id];
+                if (ans) {
+                    studyResults[q.id] = {
+                        correct: ans === q.answer,
+                        selectedOption: ans
+                    };
+                }
+            });
+            saveStateToLocalStorage();
+            document.getElementById('examResultModal').classList.add('hidden');
+            changeQuizMode('study');
+        }
+
+        function closeModalAndReset() {
+            document.getElementById('examResultModal').classList.add('hidden');
+            resetQuizState();
+            changeQuizMode('study');
+        }
+
+        // Theme management
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+            updateThemeToggleButton();
+        }
+
+        function updateThemeToggleButton() {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            if (html.classList.contains('dark')) {
+                icon.className = "fa-solid fa-sun";
+            } else {
+                icon.className = "fa-solid fa-moon";
+            }
+        }
+    </script>
+</body>
+</html>
